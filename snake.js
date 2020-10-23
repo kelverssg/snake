@@ -102,5 +102,29 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+function left() {
+    if (snake.dx === 0) {
+        snake.dx = -grid;
+        snake.dy = 0;
+    }
+};
+function right() {
+    if (snake.dx === 0) {
+        snake.dx = grid;
+        snake.dy = 0;
+    }
+};
+function up() {
+    if (snake.dy === 0) {
+        snake.dy = -grid;
+        snake.dx = 0;
+    }
+};
+function down() {
+    if (snake.dy === 0) {
+        snake.dy = grid;
+        snake.dx = 0;
+    }  
+};
 
 requestAnimationFrame(gameLoop);
