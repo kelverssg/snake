@@ -3,7 +3,7 @@ var scoreDisplayElem = document.querySelector('.scoreboard');
 var hiscoreDisplayElem = document.querySelector('.hi');
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
-
+var paused = false;
 var grid = 16;
 var count = 0;
 
@@ -28,6 +28,7 @@ const getRandomInt = (mn, mx) => Math.floor(Math.random() * (mx - mn)) + mn;
 function gameLoop() {
     requestAnimationFrame(gameLoop);
     if (++count < 4) return;
+    if (paused) cancelAnimationFrame();
 
     count = 0;
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -100,6 +101,7 @@ document.addEventListener('keydown', function(e) {
         snake.dy = grid;
         snake.dx = 0;
     }
+    else if (e.which == 32) paused = !paused;
 });
 
 function left() {
@@ -127,4 +129,6 @@ function down() {
     }  
 };
 
+
 requestAnimationFrame(gameLoop);
+    
